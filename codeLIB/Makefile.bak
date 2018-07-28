@@ -1,0 +1,56 @@
+export PRJ_HOME = $(shell pwd)
+#please add other dir
+SUBDIRS	= core test 
+LIBPATH = $(PRJ_HOME)/lib
+OBJDIR = ./obj
+
+
+#AR     = /usr/bin/ar
+#RANLIB = /home/TPS/gaofei/fanggj-OCTEON-SDK/tools-gcc-4.7/bin/mips64-octeon-linux-gnu-ranlib
+
+
+OBJS = $(foreach dir,$(SUBDIRS),$(subst $(dir)/,$(OBJDIR)/,$(subst .c,.o,$(wildcard $(dir)/*.c))))
+
+ifeq ($(bps), tetratest)
+TARGET = bpslib_bsey_tetratest.a
+else ifeq ($(bps), pdttest)
+TARGET = bpslib_bsey_pdttest.a
+else ifeq ($(bps), tetra)
+TARGET = bpslib_bsey_tetra.a
+else
+# for my test
+TARGET = mycode.a
+endif
+
+
+all:main_all post_build
+
+main_all:
+	mkdir -p $(LIBPATH)
+	$(foreach dir, $(SUBDIRS), $(MAKE) -C $(dir) ;)
+	@$(AR) rv $(TARGET) $(OBJS)
+	#$(RANLIB) $(TARGET)   #wuh del
+	@rm -rf $(OBJDIR)
+	@rm -rf $(LIBPATH)
+
+post_build:
+	echo "do the next step"	
+release: all main
+
+#base:
+#    rm *.a
+
+main:$(objs_main)  
+    #$(foreach dir, $(MAINDIR), $(MAKE) -C $(dir) ;)
+    #@$(AR) rv $(TARGET_M) $(OBJS_MAIN)
+	@gcc $(objs_main) $(TARGET) -lpthread -lrt -rdynamic -ldl -o $(FINALTARGET)
+#	@nm -l -n $(FINALTARGET) > __tmp_map
+#	@./genmap.awk __tmp_map > $(map_name)
+#	@rm -f __tmp_map
+#	@echo build ok..................
+
+
+clean:
+	$(foreach dir, $(SUBDIRS), $(MAKE) -C $(dir) cleann ;)
+	@rm -rf $(TARGET)
+	@rm -rf $(LIBPATH)

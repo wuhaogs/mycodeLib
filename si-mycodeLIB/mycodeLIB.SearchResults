@@ -1,0 +1,9 @@
+---- ET_PACK_ALIGN Matches (8 in 3 files) ----
+mycode.h (Y:\wuh\mycodeLIB\codeLIB\core):#define ET_PACK_ALIGN(x) __attribute__((packed, aligned(x)))
+mycode.h (Y:\wuh\mycodeLIB\codeLIB\core):} ET_PACK_ALIGN(1) IP_PKG;
+mytest.c (Y:\wuh\mycodeLIB\codeLIB\test):}ET_PACK_ALIGN(4) AA1;
+mytest.c (Y:\wuh\mycodeLIB\codeLIB\test):}ET_PACK_ALIGN(4) AA2;
+mytest.c (Y:\wuh\mycodeLIB\codeLIB\test):}ET_PACK_ALIGN(4) AA3;
+mytest.c (Y:\wuh\mycodeLIB\codeLIB\test):}ET_PACK_ALIGN(4) AA4;
+sys.h (Y:\wuh\mycodeLIB\codeLIB\common):#define ET_PACK_ALIGN(x)
+sys.h (Y:\wuh\mycodeLIB\codeLIB\common):#define ET_PACK_ALIGN(x) __attribute__((packed, aligned(x)))

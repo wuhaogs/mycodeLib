@@ -1,0 +1,30 @@
+//#include "common.h"
+//#include "mycode.h"
+//#include "mytest.h"
+#include <stdio.h>
+#include <sys/types.h>
+#include <fcntl.h>
+
+/***************version info*****************************/
+#define BSEY_VER_MAJOR   "1"
+#define BSEY_VER_UPPER   "0"
+#define BSEY_VER_MIDDLE  "0"
+#define BSEY_VER_MINOR   "0_test"
+
+int main()
+{
+    printf("hello world!\n");
+    //TestList(16515088,323);
+    //testBitStruct();
+    //testlistS();
+    //testlistD();
+    //testqueue();
+    //GetSystemEndianMode();
+
+
+    pzhizhen();
+
+    return 0;
+
+
+}
